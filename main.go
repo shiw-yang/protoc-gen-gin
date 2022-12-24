@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/x-lambda/protoc-gen-gin/generator"
 
@@ -9,7 +10,15 @@ import (
 	"google.golang.org/protobuf/types/pluginpb"
 )
 
+const version = "0.0.1"
+
 func main() {
+	getVersion := flag.Bool("version", false, "show the version")
+	flag.Parse()
+	if *getVersion {
+		fmt.Printf("protoc-gen-gin %v\n", version)
+		return
+	}
 	var flags flag.FlagSet
 
 	var paramErrCode string
